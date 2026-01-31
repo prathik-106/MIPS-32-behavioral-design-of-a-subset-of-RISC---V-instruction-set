@@ -51,12 +51,12 @@ parameter ADD =6'd0,SUB=6'd1,AND=6'd2,OR=6'd3,SLT=6'd4,MUL=6'd5,HLT=6'b111111, /
 
     always @(posedge clk2) begin // ID STAGE
         if(HALTED==0) begin
-            ID_EX_A <= #2 (IF_ID_IR[25:21]==5'd0)?0:  REG[IF_ID_IR[25:21]]; // IVE WRITEN THIS DIFFERENTLY 
+            ID_EX_A <= #2 (IF_ID_IR[25:21]==5'd0)?0:  REG[IF_ID_IR[25:21]]; 
             ID_EX_B <= #2 (IF_ID_IR[20:16]==5'd0)?0:  REG[IF_ID_IR[20:16]];
 
             ID_EX_NPC <= #2 IF_ID_NPC;
             ID_EX_IR <= #2 IF_ID_IR;
-            ID_EX_IMM <= #2 {{16{IF_ID_IR[15]}},IF_ID_IR[15:0]};// HE HAS USED EXTRA BRACKETS HERE;
+            ID_EX_IMM <= #2 {{16{IF_ID_IR[15]}},IF_ID_IR[15:0]};
 
             // UPDATE THE TYPE
             case (IF_ID_IR[31:26])
@@ -144,4 +144,5 @@ parameter ADD =6'd0,SUB=6'd1,AND=6'd2,OR=6'd3,SLT=6'd4,MUL=6'd5,HLT=6'b111111, /
             endcase
         end
     end 
+
 endmodule
